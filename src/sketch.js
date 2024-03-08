@@ -1,5 +1,7 @@
 let clicked = false;
 let sBird = 1/2;
+let rFish;
+
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -7,12 +9,16 @@ function setup() {
   // easier
   let myCanvas = createCanvas(400, 400);
   myCanvas.parent("canvas-parent");
+  rFish = PI / 4;
 }
 
 function draw() {
   background(220);
   drawBackground();
   drawFish();
+  if (sBird > 1 ) {
+    rFish = rFish + PI/4
+  }
   drawBird();
   if (clicked) {
     sBird = sBird + .01;
@@ -67,9 +73,8 @@ function drawBackground() {
 function drawFish() {
   push();
 
-  //translate(100,200);
-  //angleMode(DEGREES);    
-  //rotate(PI/4);
+  translate(100,200);    
+  rotate(rFish);
   
   scale(25);
   stroke(0);
@@ -223,7 +228,6 @@ function drawBird() {
     pop();
   ellipse(0, 0, 50);
   }
-  
 
 function drawButterfly(x, y, s) {
   // butterfly
