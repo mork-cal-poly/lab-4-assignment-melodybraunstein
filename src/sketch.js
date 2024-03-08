@@ -1,3 +1,5 @@
+let clicked = false;
+let sBird = 1/2;
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -11,6 +13,10 @@ function draw() {
   background(220);
   drawBackground();
   drawFish();
+  drawBird();
+  if (clicked) {
+    sBird = sBird + .01;
+  }
   drawButterfly(10, 10, 0.05);
 }
 
@@ -61,7 +67,9 @@ function drawBackground() {
 function drawFish() {
   push();
 
-  translate(100,200);
+  //translate(100,200);
+  //angleMode(DEGREES);    
+  //rotate(PI/4);
   
   scale(25);
   stroke(0);
@@ -95,6 +103,127 @@ function drawFish() {
   pop();
 
 }
+
+function drawBird() {
+  push();
+     
+      translate(100,250);
+      scale(sBird);
+    
+      //tail
+      fill(255,0,0);
+      stroke(87,176,242);
+      strokeWeight(2);
+      triangle(-20,20,-20,-20,-160,0); // clockwise rotation
+    
+      //small tail
+      fill(47,226,250);
+      stroke(255,255,255);
+      strokeWeight(1.5);
+      triangle(-20,15,-20,-15,-70,0);
+    
+      //head
+      fill(255,0,0);
+      stroke(243,91,35);
+      strokeWeight(2);
+      ellipse(40,0,60,40);
+    
+      //face
+      fill(250,243,220);
+      stroke(0,0,0);
+      strokeWeight(1.5);
+      ellipse(55,0,30,30);
+    
+      //eyes
+      fill (0,0,0);
+      stroke(0,0,0);
+      strokeWeight(1);
+      ellipse(52,-5,5,5);
+    
+      //stomach
+      fill(0,100,155);
+      stroke(0,100,155);
+      strokeWeight(1);   
+      rect(-20,-15,30); // the values confuse me, is the -20 the left side of square and -15 the right side? is it centerd around 0,0 
+    
+      //lower wing
+      fill(0,100,155);
+      stroke(50,100,250);
+      strokeWeight(2);
+      triangle(30,20,0,150,-50,20); // 30 to right, 20 above
+    
+      //upper wing
+      fill(0,100,155);
+      stroke(50,100,250);
+      strokeWeight(2);
+      triangle(0,-150,30,-20,-50,-20);
+    
+      //lower (upper) feather
+      fill(0,100,155);
+      stroke(50,100,250);
+      strokeWeight(2);
+      triangle(-40,-40,-45,-30,-50,-80); //  POS IS RIGHT NEG IS LEFT
+    
+      //upper (upper) feather
+      fill(0,100,155);
+      stroke(50,100,250);
+      strokeWeight(2);
+      triangle(-35,-120,-35,-60,-25,-90);
+    
+      //lower (upper) feather
+      fill(0,100,155);
+      stroke(50,100,250);
+      strokeWeight(2);
+      triangle(-40,40,-45,30,-50,80);
+    
+      //lower (lower) feather
+      fill(0,100,155);
+      stroke(50,100,250);
+      strokeWeight(2);
+      triangle(-35,120,-35,60,-25,90);
+    
+      //beak
+      fill(250,243,220);
+      stroke(0,0,0);
+      strokeWeight(2);
+      triangle(60,15,50,50,50,20);
+    
+      //small beak
+      fill(0,0,0);
+      stroke(0,0,0);
+      strokeWeight(1);
+      triangle(35,20,40,35,45,20);
+    
+      //yellow wing
+      fill(250,243,73);
+      stroke(23,255,0);
+      strokeWeight(2);
+      arc(-8,-20,75,130,PI,0);
+      arc(-8,20,-75,130,0,PI);
+    
+      //light blue wing
+      fill(47,226,250);
+      stroke(0,100,155);
+      strokeWeight(2);
+      arc(-9,-20,80,90,PI,0);
+      arc(-9,20,-80,90,0,PI);
+    
+      //red wing
+      fill(255,0,0);
+      stroke(250,243,73);
+      strokeWeight(2);
+      arc(-10,-20,80,50,PI,0);
+      arc(-10,20,-80,50,0,PI);
+    
+      //stomach line
+      stroke(250,243,73);
+      strokeWeight(1);
+      line(-5,-20,-5,20);
+  
+    pop();
+  ellipse(0, 0, 50);
+  }
+  
 
 function drawButterfly(x, y, s) {
   // butterfly
@@ -160,4 +289,9 @@ function drawButterfly(x, y, s) {
   pop();
 
   pop();
+}
+
+function mouseClicked() {
+   clicked = true;
+   sBird = sBird + .01;
 }
